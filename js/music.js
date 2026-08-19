@@ -1,4 +1,20 @@
 export function bindMusicPlayers() {
+  const lyricsStage = document.querySelector('.lyrics-stage');
+  const setLyrics = (lines, index) => {
+    if (!lyricsStage || !lines.length) return;
+    const previous = lyricsStage.querySelector('.lyric-previous');
+    const current = lyricsStage.querySelector('.lyric-current');
+    const next = lyricsStage.querySelector('.lyric-next');
+    const activeIndex = Math.min(lines.length - 1, Math.max(0, index));
+    if (current.textContent === lines[activeIndex]) return;
+    lyricsStage.classList.remove('lyrics-changing');
+    void lyricsStage.offsetWidth;
+    previous.textContent = lines[Math.max(0, activeIndex - 1)];
+    current.textContent = lines[activeIndex];
+    next.textContent = lines[Math.min(lines.length - 1, activeIndex + 1)];
+    lyricsStage.classList.add('lyrics-changing');
+  };
+
   document.querySelectorAll('.music-player').forEach((player) => {
     const audio = player.querySelector('audio');
     const button = player.querySelector('.music-play-button');
@@ -45,7 +61,11 @@ export function bindMusicPlayers() {
       if (!audio.getAttribute('src')) return;
       if (!audio.paused) { audio.pause(); reset(); return; }
       if (audio.currentTime < start || (end && audio.currentTime >= end)) audio.currentTime = start;
-      try { await audio.play(); fadeIn(); button.textContent = 'Ⅱ'; player.classList.add('playing'); }
+      try {
+        await audio.play(); fadeIn(); button.textContent = 'Ⅱ'; player.classList.add('playing');
+        document.querySelectorAll('.music-player').forEach((item) => item.classList.toggle('selected-track', item === player));
+        setLyrics(captions, 0);
+      }
       catch { caption.textContent = 'Não foi possível reproduzir este trecho agora.'; reset(); }
     });
     audio.addEventListener('timeupdate', () => {
@@ -60,6 +80,7 @@ export function bindMusicPlayers() {
         caption.textContent = captions[captionIndex];
         caption.classList.add('caption-in');
       }
+      setLyrics(captions, captionIndex);
       if (end && audio.currentTime >= end - (fadeDuration / 1000)) fadeOut();
     });
     audio.addEventListener('ended', () => { audio.currentTime = start; reset(); });

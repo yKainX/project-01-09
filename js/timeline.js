@@ -17,14 +17,15 @@ function renderGallery() {
 
 function renderMusic() {
   const tracks = [
-    ['Te Encontrar', 'Modéstia Parte', 'assets/audio/te-encontrar.mp3', 56, 68, ['Você chegou e combinou comigo.', 'E eu só queria te encontrar.']],
-    ['Linda, Louca e Mimada', 'Oriente', 'assets/audio/linda-louca-e-mimada.mp3', 72, 84, ['Você faz tudo do seu jeito.', 'E é por isso que ninguém te esquece.']],
-    ['Like I Want You', 'Giveon', 'assets/audio/like-i-want-you.mp3', 69, 81, ['Tem coisa que a gente tenta esconder.', 'Mas o coração entrega.']],
-    ['Pupila', 'ANAVITÓRIA e Vitor Kley', 'assets/audio/pupila.mp3', 60, 72, ['Você ocupa meus pensamentos.', 'E eu gosto até do jeito que você existe.']],
-    ['Cuidado', 'Gaab', 'assets/audio/cuidado.mp3', 64, 76, ['Você merece alguém que te admire.', 'Que fique do seu lado sem complicar.']],
-    ['Meu Abrigo', 'Melim', 'assets/audio/meu-abrigo.mp3', 81, 93, ['Você é meu lugar de paz.', 'Meu lugar favorito é perto de você.']]
+    ['Te Encontrar', 'Modéstia Parte', 'assets/audio/te-encontrar.mp3', 56, 68, ['Quando essa música começa,', 'eu lembro que tudo ficou mais bonito', 'depois que encontrei você.']],
+    ['Linda, Louca e Mimada', 'Oriente', 'assets/audio/linda-louca-e-mimada.mp3', 72, 84, ['Você faz tudo do seu jeito.', 'E talvez seja exatamente por isso', 'que eu gosto tanto de você.']],
+    ['Like I Want You', 'Giveon', 'assets/audio/like-i-want-you.mp3', 69, 81, ['Tem coisa que eu tento disfarçar.', 'Mas o meu coração sempre entrega', 'quando o assunto é você.']],
+    ['Pupila', 'ANAVITÓRIA e Vitor Kley', 'assets/audio/pupila.mp3', 60, 72, ['Você aparece nos meus pensamentos.', 'E eu gosto até das partes do dia', 'em que eu paro só para lembrar de você.']],
+    ['Cuidado', 'Gaab', 'assets/audio/cuidado.mp3', 64, 76, ['Eu quero ser abrigo,', 'cuidado e companhia', 'nos seus dias mais difíceis.']],
+    ['Meu Abrigo', 'Melim', 'assets/audio/meu-abrigo.mp3', 81, 93, ['Você é meu lugar de paz.', 'Meu lugar favorito é perto de você.', 'Sempre foi, sem você saber.']]
   ];
-  return `<div class="music-list">${tracks.map(([title, artist, file, start, end, captions]) => `<article class="music-player" data-start="${start}" data-end="${end}" data-captions="${encodeURIComponent(JSON.stringify(captions))}"><audio preload="none" src="${file}"></audio><div class="music-top"><button class="music-play-button" type="button" aria-label="Tocar trecho de ${title}">▶</button><div><strong>${title}</strong><small>${artist}</small></div><span class="music-time">0:00 / 0:00</span></div><div class="music-progress"><span></span></div><p class="music-caption">${captions[0]}</p></article>`).join('')}</div>`;
+  const firstLines = tracks[0][5];
+  return `<section class="lyrics-experience" aria-label="Mensagens que acompanham as músicas"><div class="lyrics-stage"><span class="lyrics-kicker">mensagens que eu escrevi para você</span><p class="lyric-previous">${firstLines[0]}</p><h3 class="lyric-current">${firstLines[1]}</h3><p class="lyric-next">${firstLines[2]}</p><div class="lyrics-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="music-list">${tracks.map(([title, artist, file, start, end, captions]) => `<article class="music-player" data-start="${start}" data-end="${end}" data-captions="${encodeURIComponent(JSON.stringify(captions))}"><audio preload="none" src="${file}"></audio><div class="music-top"><button class="music-play-button" type="button" aria-label="Tocar trecho de ${title}">▶</button><div><strong>${title}</strong><small>${artist}</small></div><span class="music-time">0:00 / 0:00</span></div><div class="music-progress"><span></span></div><p class="music-caption">${captions[1]}</p></article>`).join('')}</div></section>`;
 }
 
 function renderMediaSection() {
