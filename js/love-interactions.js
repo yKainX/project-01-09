@@ -25,6 +25,10 @@ export function bindLoveInteractions() {
 
   const letterReveal = document.querySelector('#letter-reveal');
   document.querySelectorAll('.sealed-letter').forEach((button) => {
+    const paper = document.createElement('span');
+    paper.className = 'letter-paper';
+    paper.textContent = button.dataset.letter;
+    button.append(paper);
     button.addEventListener('click', () => {
       document.querySelectorAll('.sealed-letter').forEach((item) => item.classList.toggle('opened', item === button));
       letterReveal.textContent = button.dataset.letter;

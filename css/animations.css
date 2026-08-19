@@ -159,3 +159,18 @@ body::after { background-image:radial-gradient(rgba(181,112,145,.32) .55px,trans
 @keyframes heart-pop { from { opacity:0; transform:scale(.2); } to { opacity:1; transform:scale(1); } }
 @keyframes heart-drift { 0%,100% { margin-top:0; } 50% { margin-top:-11px; } }
 @media (min-width:680px) { .love-garden,.heart-game { padding:38px; }.heart-game { display:grid; gap:10px 38px; grid-template-columns:.85fr 1.15fr; }.heart-game-intro { grid-row:span 2; }.game-start { margin-bottom:0; }.heart-playground { align-self:end; height:245px; }.heart-game-message { align-self:start; margin:0; }.animated-letters .sealed-letter { min-height:195px; } }
+
+/* As cartinhas agora saem de dentro do envelope */
+.animated-letters { align-items:end; }
+.animated-letters article { min-height:286px; position:relative; }
+.animated-letters .sealed-letter { bottom:0; height:166px; left:0; overflow:visible; position:absolute; right:0; z-index:2; }
+.animated-letters .sealed-letter::before { background:linear-gradient(135deg,transparent 49%,rgba(213,135,167,.25) 50%,transparent 51%); border:0; bottom:0; height:100%; left:0; top:auto; transform:none; width:100%; }
+.animated-letters .sealed-letter::after { background:linear-gradient(45deg,transparent 49%,rgba(213,135,167,.3) 50%,transparent 51%); border:0; border-top:1px solid rgba(213,135,167,.3); bottom:0; clip-path:polygon(0 0,100% 0,50% 56%); content:""; height:100%; inset:auto 0 0; position:absolute; }
+.animated-letters .letter-flap { top:48px; z-index:4; }
+.animated-letters .letter-label { align-self:end; padding-bottom:27px; z-index:4; }
+.animated-letters i { z-index:4; }
+.letter-paper { background:linear-gradient(135deg,#fffefa,#fff5f8); border:1px solid #efd2df; border-radius:10px 10px 4px 4px; box-shadow:0 8px 20px rgba(104,57,80,.12); color:#6e4c5e; font:italic .84rem/1.5 var(--serif); left:10%; opacity:0; padding:16px 13px 19px; pointer-events:none; position:absolute; right:10%; text-align:left; top:9px; transform:translateY(76px) scale(.96); transition:transform .7s cubic-bezier(.2,.82,.22,1),opacity .3s ease; z-index:1; }
+.letter-paper::before { background:repeating-linear-gradient(to bottom,transparent 0,transparent 20px,rgba(221,176,193,.22) 21px); content:""; inset:10px 10px; opacity:.7; position:absolute; }
+.letter-paper { isolation:isolate; }.letter-paper::after { color:#d284a2; content:"para você ♡"; font:600 .56rem var(--sans); letter-spacing:.1em; position:absolute; right:12px; text-transform:uppercase; top:8px; }
+.animated-letters .sealed-letter.opened { z-index:5; }.animated-letters .sealed-letter.opened .letter-paper { opacity:1; transform:translateY(-122px) scale(1); }.animated-letters .sealed-letter.opened .letter-label,.animated-letters .sealed-letter.opened i { opacity:.38; transition:opacity .25s; }.animated-letters .sealed-letter.opened .letter-flap { z-index:5; }
+@media (min-width:680px) { .animated-letters article { min-height:310px; }.animated-letters .sealed-letter { height:185px; }.animated-letters .sealed-letter.opened .letter-paper { transform:translateY(-128px) scale(1); } }
