@@ -32,6 +32,15 @@ let currentChapterIndex = null;
 
 function renderChapters() {
   const unlocked = unlockedCount(state, chapters.length);
+  const storyFinished = state.completed.length === chapters.length;
+  const chapterList = chapterContainer.closest('.chapter-list');
+  const menuTitle = chapterList.querySelector('.section-heading span');
+  const menuSubtitle = chapterList.querySelector('.section-heading small');
+  chapterList.hidden = !storyFinished;
+  if (storyFinished) {
+    menuTitle.textContent = 'Agora você pode escolher';
+    menuSubtitle.textContent = 'revisite qualquer pedacinho de nós';
+  }
   chapterContainer.innerHTML = chapters.map((chapter, index) => {
     const done = state.completed.includes(index);
     const locked = index >= unlocked;
@@ -39,6 +48,8 @@ function renderChapters() {
     return `<button class="chapter-card ${locked ? 'locked' : ''} ${done ? 'done' : ''} ${isActive ? 'active' : ''}" type="button" data-chapter="${index}" aria-label="${chapter.title}${locked ? ', bloqueado' : ''}" aria-disabled="${locked}" ${isActive ? 'aria-current="page"' : ''}><span class="card-no">${String(index + 1).padStart(2, '0')}</span><span class="card-body"><strong>${chapter.title}</strong><small>${locked ? 'Aguardando você' : chapter.subtitle}</small></span><span class="card-state">${done ? '✓' : locked ? '⌕' : '→'}</span></button>`;
   }).join('');
   chapterContainer.querySelectorAll('[data-chapter]').forEach((item) => item.addEventListener('click', () => openChapter(Number(item.dataset.chapter))));
+  const continueButton = document.querySelector('#continue-button');
+  if (continueButton) continueButton.innerHTML = storyFinished ? 'Escolher uma lembrança <span>↓</span>' : 'Começar por nós <span>→</span>';
   updateProgress(state, chapters.length);
 }
 
@@ -162,7 +173,13 @@ accessForm.addEventListener('submit', (event) => {
   accessCode.select();
 });
 
-document.querySelector('#continue-button').addEventListener('click', () => openChapter(resolveContinueIndex()));
+document.querySelector('#continue-button').addEventListener('click', () => {
+  if (state.completed.length === chapters.length) {
+    document.querySelector('.chapter-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  openChapter(resolveContinueIndex());
+});
 document.querySelector('.brand').addEventListener('click', (event) => { event.preventDefault(); goHome(); });
 document.querySelector('#modal-close').addEventListener('click', closeModal);
 document.querySelector('#modal-backdrop').addEventListener('click', (event) => { if (event.target.id === 'modal-backdrop') closeModal(); });
