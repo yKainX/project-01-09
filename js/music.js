@@ -1,5 +1,6 @@
 export function bindMusicPlayers() {
   const lyricsStage = document.querySelector('.lyrics-stage');
+  let activePlayer = null;
   const setLyrics = (lines, index) => {
     if (!lyricsStage || !lines.length) return;
     const previous = lyricsStage.querySelector('.lyric-previous');
@@ -28,7 +29,20 @@ export function bindMusicPlayers() {
     let fadingOut = false;
 
     const formatTime = (seconds) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
-    const reset = () => { button.textContent = '▶'; player.classList.remove('playing'); };
+    const reset = () => {
+      button.textContent = '▶';
+      player.classList.remove('playing');
+      if (activePlayer === player) activePlayer = null;
+    };
+    const stopPlayback = (rewind = true) => {
+      fadingOut = true;
+      audio.pause();
+      audio.volume = 1;
+      if (rewind) audio.currentTime = start;
+      fadingOut = false;
+      reset();
+    };
+    player.stopMusicPlayback = stopPlayback;
     const fadeIn = () => {
       const startedAt = performance.now();
       audio.volume = 0;
@@ -59,10 +73,12 @@ export function bindMusicPlayers() {
 
     button.addEventListener('click', async () => {
       if (!audio.getAttribute('src')) return;
-      if (!audio.paused) { audio.pause(); reset(); return; }
+      if (!audio.paused) { stopPlayback(false); return; }
+      if (activePlayer && activePlayer !== player) activePlayer.stopMusicPlayback?.(true);
       if (audio.currentTime < start || (end && audio.currentTime >= end)) audio.currentTime = start;
       try {
         await audio.play(); fadeIn(); button.textContent = 'Ⅱ'; player.classList.add('playing');
+        activePlayer = player;
         document.querySelectorAll('.music-player').forEach((item) => item.classList.toggle('selected-track', item === player));
         setLyrics(captions, 0);
       }
