@@ -10,16 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/animations.css?v=archive-2" />
+    <link rel="stylesheet" href="css/animations.css?v=love-3" />
   </head>
   <body>
     <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
     <section class="boot-screen" id="boot-screen" aria-label="Carregando M.A.R.I.A.">
       <div class="boot-content">
-        <span class="eyebrow">arquivo particular · 0105</span>
+        <span class="eyebrow">feito com carinho, para você</span>
         <h1>M.A.R.I.A.</h1>
-        <p>Uma coleção de coisas que eu não queria esquecer.</p>
+        <p>Porque desde que você chegou, tudo ficou mais bonito.</p>
         <div class="boot-loader"><span></span></div>
       </div>
     </section>
@@ -28,21 +28,32 @@
       <header class="topbar">
         <a class="brand" href="#home" aria-label="Início M.A.R.I.A.">M.A.R.I.A.</a>
         <div class="progress-wrap">
-          <div class="progress-copy"><span>Índice de lembranças</span><span id="progress-label">1 de 7</span></div>
+          <div class="progress-copy"><span>Nossa história</span><span id="progress-label">1 de 7</span></div>
           <div class="progress-track" aria-label="Progresso"><span id="progress-bar"></span></div>
         </div>
       </header>
 
       <section id="home" class="view active-view" aria-labelledby="welcome-title">
         <div class="hero">
-          <span class="eyebrow">arquivo 01 · aberto em 01.05.2026</span>
-          <h2 id="welcome-title">Coisas que eu<br /><em>não queria esquecer.</em></h2>
-          <p>Não é uma linha do tempo. É um pequeno arquivo de momentos que, de algum jeito, ficaram.</p>
-          <div class="hero-note" aria-label="Sete fragmentos para abrir"><span>coleção organizada em</span><strong>07 fragmentos</strong><i aria-hidden="true">✦</i></div>
-          <button class="soft-button" id="continue-button" type="button">Abrir o arquivo <span>→</span></button>
+          <span class="eyebrow">uma carta aberta em 01.05.2026</span>
+          <h2 id="welcome-title">Meu lugar favorito<br /><em>é perto de você.</em></h2>
+          <p>Entre risadas, calls, jogos e conversas sem hora para acabar, você foi virando uma das partes mais bonitas dos meus dias.</p>
+          <div class="hero-note" aria-label="Uma história feita de sete lembranças"><span>uma história feita de</span><strong>07 lembranças</strong><i aria-hidden="true">♥</i></div>
+          <button class="soft-button" id="continue-button" type="button">Começar por nós <span>→</span></button>
+          <div class="hero-collage" aria-label="Momentos da Maria"><img src="assets/images/maria-01.jpeg" alt="Maria sorrindo" /><img src="assets/images/maria-02.jpeg" alt="Maria em um momento especial" /><img src="assets/images/maria-03.jpeg" alt="Maria em uma viagem" /></div>
         </div>
+        <section class="love-section" aria-labelledby="love-title">
+          <div class="love-heading"><span class="eyebrow">tem coisa que eu precisava te dizer</span><h3 id="love-title">Você deixa tudo<br /><em>mais leve.</em></h3></div>
+          <div class="love-notes">
+            <article><span>01</span><p>Eu amo como uma conversa aleatória com você sempre vira a melhor parte do dia.</p></article>
+            <article><span>02</span><p>Eu amo a sua risada, as suas reações e esse seu jeito de deixar qualquer coisa mais divertida.</p></article>
+            <article><span>03</span><p>Eu amo que, mesmo de longe, você consegue fazer eu me sentir perto.</p></article>
+            <article><span>04</span><p>E amo que, em cada dia, eu continuo encontrando novos motivos para escolher você.</p></article>
+          </div>
+          <div class="love-promise"><span>uma promessa simples</span><p>Quero continuar ficando: nas calls, nos silêncios, nas zoeiras e em tudo de bonito que ainda pode ser nosso.</p></div>
+        </section>
         <section class="chapter-list" aria-label="Capítulos">
-          <div class="section-heading"><span>Índice</span><small>sete coisas para abrir</small></div>
+          <div class="section-heading"><span>Nossas lembranças</span><small>sete pedacinhos de nós</small></div>
           <div id="chapters" class="chapters"></div>
         </section>
 
@@ -56,9 +67,9 @@
 
     <section class="access-screen" id="access-screen" aria-labelledby="access-title">
       <form class="access-card" id="access-form">
-        <span class="eyebrow">arquivo de lembranças</span>
-        <h2 id="access-title">Para você.</h2>
-        <p>Uma data abre tudo o que foi guardado aqui.</p>
+        <span class="eyebrow">uma surpresa para você</span>
+        <h2 id="access-title">M.A.R.I.A.</h2>
+        <p>Digite a data que fez a nossa história começar.</p>
         <label class="sr-only" for="access-code">Senha de acesso</label>
         <input id="access-code" name="access-code" type="password" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="4" placeholder="••••" required />
         <button class="soft-button" type="submit">Entrar <span>→</span></button>
