@@ -32,8 +32,9 @@ function renderMediaSection() {
 }
 
 function renderCards(chapter) {
-  const cards = chapter.cards.map(([title, text], index) => `<article class="memory-card ${chapter.type === 'music' ? 'song-card' : ''}"><span class="memory-date">${chapter.type === 'timeline' ? `memória ${String(index + 1).padStart(2, '0')}` : 'para guardar'}</span><h4>${title}</h4><p class="${index === 1 && chapter.type === 'portrait' ? 'quote' : ''}">${text}</p>${chapter.type === 'audio' ? `<div class="audio-player" data-id="audio-${index}"><button class="play-button" aria-label="Reproduzir áudio">▶</button><div class="audio-info"><strong>Mensagem ${index + 1}</strong><div class="mini-progress"><span></span></div></div><span class="audio-time">0:18</span></div>` : ''}</article>`).join('');
-  return `${chapter.type === 'details' ? renderMediaSection() : ''}<div class="${chapter.type === 'timeline' ? 'timeline' : ''}">${cards}</div>`;
+  const cards = chapter.cards.map(([title, text], index) => `<article class="memory-card memory-slide ${chapter.type === 'music' ? 'song-card' : ''}"><span class="memory-date">fragmento ${String(index + 1).padStart(2, '0')}</span><h4>${title}</h4><p class="${index === 1 && chapter.type === 'portrait' ? 'quote' : ''}">${text}</p>${chapter.type === 'audio' ? `<div class="audio-player" data-id="audio-${index}"><button class="play-button" aria-label="Reproduzir áudio">▶</button><div class="audio-info"><strong>Mensagem ${index + 1}</strong><div class="mini-progress"><span></span></div></div><span class="audio-time">0:18</span></div>` : ''}</article>`).join('');
+  const carousel = `<section class="memory-carousel" aria-label="Fragmentos desta lembrança"><div class="carousel-rail">${cards}</div><div class="carousel-controls"><button type="button" data-carousel="previous" aria-label="Fragmento anterior">←</button><span class="carousel-count" aria-live="polite"></span><button type="button" data-carousel="next" aria-label="Próximo fragmento">→</button></div></section>`;
+  return `${chapter.type === 'details' ? renderMediaSection() : ''}${carousel}`;
 }
 
 export function contentFor(chapter) {

@@ -5,6 +5,7 @@ import { toast } from './animations.js';
 import { bindPlayers } from './audio.js';
 import { bindGallery } from './gallery.js';
 import { bindMusicPlayers } from './music.js';
+import { bindMemoryCarousels } from './memory-carousel.js';
 import { chapters, contentFor } from './timeline.js';
 import { mountQualityGame } from './game.js';
 
@@ -53,7 +54,7 @@ function openChapter(index, writeHistory = true) {
   currentChapterIndex = index;
   state.lastChapterViewed = index;
   saveState(state);
-  chapterView.innerHTML = `<article class="chapter-page"><button class="back-button" id="back-button" type="button">← capítulos</button><span class="chapter-number">CAPÍTULO ${String(index + 1).padStart(2, '0')}</span><h2 class="chapter-title">${chapter.title}</h2><p class="chapter-intro">${chapter.intro}</p><div class="content-area">${contentFor(chapter)}</div><div class="complete-row"><button class="complete-button ${state.completed.includes(index) ? 'completed' : ''}" id="complete-button" type="button" ${state.completed.includes(index) ? 'disabled' : ''}>${state.completed.includes(index) ? 'Lembrança guardada ✓' : 'Guardar esta lembrança'}</button></div></article>`;
+  chapterView.innerHTML = `<article class="chapter-page chapter-experience chapter-type-${chapter.type}"><header class="chapter-cover"><button class="back-button" id="back-button" type="button">← voltar para nós</button><span class="chapter-number">CENA ${String(index + 1).padStart(2, '0')}</span><h2 class="chapter-title">${chapter.title}</h2><p class="chapter-intro">${chapter.intro}</p><span class="cover-mark" aria-hidden="true">✦</span></header><div class="content-area">${contentFor(chapter)}</div><div class="complete-row"><button class="complete-button ${state.completed.includes(index) ? 'completed' : ''}" id="complete-button" type="button" ${state.completed.includes(index) ? 'disabled' : ''}>${state.completed.includes(index) ? 'Lembrança guardada ✓' : 'Guardar esta lembrança'}</button></div></article>`;
   renderChapters();
   showView('#chapter-view');
   if (writeHistory) history.pushState({ chapter: index }, '', `#capitulo-${index + 1}`);
@@ -65,6 +66,7 @@ function openChapter(index, writeHistory = true) {
   bindPlayers(state);
   bindGallery(state);
   bindMusicPlayers();
+  bindMemoryCarousels();
   backButton?.focus();
 }
 
