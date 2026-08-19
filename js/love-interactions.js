@@ -25,14 +25,36 @@ export function bindLoveInteractions() {
 
   const letterReveal = document.querySelector('#letter-reveal');
   document.querySelectorAll('.sealed-letter').forEach((button) => {
-    const paper = document.createElement('span');
-    paper.className = 'letter-paper';
-    paper.textContent = button.dataset.letter;
-    button.append(paper);
     button.addEventListener('click', () => {
-      document.querySelectorAll('.sealed-letter').forEach((item) => item.classList.toggle('opened', item === button));
-      letterReveal.textContent = button.dataset.letter;
+      if (button.classList.contains('is-sending')) return;
+      button.classList.add('is-sending');
+      letterReveal.textContent = 'Uma cartinha está voando até você...';
       letterReveal.classList.add('is-revealed');
+
+      const bounds = button.getBoundingClientRect();
+      const sheet = document.createElement('div');
+      sheet.className = 'flying-letter-sheet';
+      sheet.setAttribute('aria-hidden', 'true');
+      sheet.innerHTML = '<span>para maria</span><i>♡</i>';
+      sheet.style.left = `${bounds.left + (bounds.width / 2) - 42}px`;
+      sheet.style.top = `${bounds.top + 26}px`;
+      document.body.append(sheet);
+
+      const showLetter = () => {
+        sheet.remove();
+        const backdrop = document.querySelector('#modal-backdrop');
+        const content = document.querySelector('#modal-content');
+        content.innerHTML = '<div class="letter-modal-mark">✉</div><span class="letter-modal-kicker">uma cartinha para você</span><h3 id="modal-title"></h3><p></p>';
+        content.querySelector('h3').textContent = button.querySelector('.letter-label').textContent;
+        content.querySelector('p').textContent = button.dataset.letter;
+        document.dispatchEvent(new CustomEvent('maria:modalopen', { detail: button }));
+        backdrop.classList.add('open');
+        backdrop.setAttribute('aria-hidden', 'false');
+        document.querySelector('#modal-close').focus();
+        button.classList.remove('is-sending');
+        letterReveal.textContent = 'Sua cartinha chegou. ♡';
+      };
+      sheet.addEventListener('animationend', showLetter, { once: true });
     });
   });
 
