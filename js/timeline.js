@@ -28,7 +28,7 @@ function renderMusic() {
 }
 
 function renderMediaSection() {
-  return `<section class="illustration-moment" aria-label="Um retrato ilustrado de vocês"><img src="assets/illustrations/couple-bouquet-sticker.png" alt="Ilustração de um casal apaixonado trocando flores" /><div><span class="eyebrow">um retrato do que eu sinto</span><h3>Você faz meu coração<br />ficar em casa.</h3><p>Não precisa de foto perfeita quando o que eu sinto por você aparece em cada detalhe.</p></div></section>`;
+  return `<section class="illustration-moment" aria-label="Um retrato ilustrado de vocês"><img src="assets/illustrations/couple-bouquet-sticker-personal.png" alt="Ilustração de vocês dois trocando flores" /><div><span class="eyebrow">um retrato do que eu sinto</span><h3>Você faz meu coração<br />ficar em casa.</h3><p>Não precisa de foto perfeita quando o que eu sinto por você aparece em cada detalhe.</p></div></section>`;
 }
 
 function renderCards(chapter) {
