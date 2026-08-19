@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/animations.css?v=music-lyrics-13" />
+    <link rel="stylesheet" href="css/animations.css?v=story-flow-17" />
   </head>
   <body>
     <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -42,7 +42,8 @@
           <button class="soft-button" id="continue-button" type="button">Começar por nós <span>→</span></button>
           <div class="hero-collage" aria-label="Ilustração de vocês dois apaixonados"><img src="assets/illustrations/couple-bouquet-sticker-personal.png" alt="Ilustração de vocês dois: você entrega flores para ela" /></div>
         </div>
-        <section class="love-section" aria-labelledby="love-title">
+        <section class="story-invitation" aria-label="Como essa história funciona"><span class="eyebrow">uma lembrança de cada vez</span><p>Eu organizei tudo na ordem em que nós fomos acontecendo. Sem pressa, sem pular cena.</p><span aria-hidden="true">↓</span></section>
+        <section class="love-section" aria-labelledby="love-title" hidden>
           <div class="love-heading"><span class="eyebrow">tem coisa que eu precisava te dizer</span><h3 id="love-title">Você deixa tudo<br /><em>mais leve.</em></h3></div>
           <div class="love-notes">
             <article><span>01</span><p>Eu amo como uma conversa aleatória com você sempre vira a melhor parte do dia.</p></article>
@@ -52,7 +53,7 @@
           </div>
           <div class="love-promise"><span>uma promessa simples</span><p>Quero continuar ficando: nas calls, nos silêncios, nas zoeiras e em tudo de bonito que ainda pode ser nosso.</p></div>
         </section>
-        <section class="moment-selector" aria-labelledby="moment-title">
+        <section class="moment-selector" aria-labelledby="moment-title" hidden>
           <div><span class="eyebrow">escolhe um momento</span><h3 id="moment-title">O que você precisa<br /><em>agora?</em></h3></div>
           <div class="moment-options">
             <button type="button" data-moment="care">Um carinho</button>
@@ -61,7 +62,7 @@
           </div>
           <p class="moment-answer" id="moment-answer" aria-live="polite">Escolhe uma das opções. Eu deixei uma coisinha em cada uma.</p>
         </section>
-        <section class="real-timeline" aria-labelledby="timeline-title">
+        <section class="real-timeline" aria-labelledby="timeline-title" hidden>
           <div class="section-heading"><span id="timeline-title">Como você entrou nos meus dias</span><small>sem seguir roteiro</small></div>
           <ol>
             <li><span>01.05 · 03:32</span><p>Uma partida aleatória de Valorant que parecia só mais uma madrugada.</p></li>
@@ -70,7 +71,7 @@
             <li><span>agora</span><p>Você em pensamentos no meio do trabalho e vontade de chegar logo a hora de ficar perto.</p></li>
           </ol>
         </section>
-        <section class="reasons-section" aria-labelledby="reasons-title">
+        <section class="reasons-section" aria-labelledby="reasons-title" hidden>
           <div class="section-heading"><span id="reasons-title">Pequenos motivos para amar você</span><small>toque em cada um</small></div>
           <div class="reasons-wall">
             <button type="button" class="reason-note" data-reason="Sua risada faz qualquer momento ficar melhor.">sua risada</button>
@@ -82,7 +83,7 @@
           </div>
           <p class="reason-reveal" id="reason-reveal" aria-live="polite">Começa por qualquer um.</p>
         </section>
-        <section class="manual-section" aria-labelledby="manual-title">
+        <section class="manual-section" aria-labelledby="manual-title" hidden>
           <div class="manual-cover"><span class="eyebrow">edição única</span><h3 id="manual-title">Manual de como<br /><em>amar a Maria.</em></h3><small>não existem regras exatas, mas existem pistas.</small></div>
           <div class="manual-pages">
             <article><span>01</span><h4>Escute tudo.</h4><p>Até os assuntos mais aleatórios ficam bons quando vêm de você.</p></article>
@@ -91,7 +92,7 @@
             <article><span>04</span><h4>Ria junto.</h4><p>Porque uma call, um jogo e a sua risada já podem salvar um dia inteiro.</p></article>
           </div>
         </section>
-        <section class="future-section" aria-labelledby="future-title">
+        <section class="future-section" aria-labelledby="future-title" hidden>
           <span class="eyebrow">ainda tem muito para nós</span><h3 id="future-title">Coisas que eu quero<br /><em>viver com você.</em></h3>
           <ul>
             <li><span>✦</span>Mais noites em call sem perceber a hora passar.</li>
@@ -100,7 +101,7 @@
             <li><span>✦</span>Mais motivos para escolher ficar perto.</li>
           </ul>
         </section>
-        <section class="letters-section" aria-labelledby="letters-title">
+        <section class="letters-section" aria-labelledby="letters-title" hidden>
           <div class="section-heading"><span id="letters-title">Cartinhas para você</span><small>toque para abrir</small></div>
           <div class="sealed-letters animated-letters">
             <article><button type="button" class="sealed-letter" data-letter="Você é muito maior do que qualquer dúvida que aparecer. Seu jeito é raro, bonito e merece ser amado exatamente como é."><span class="letter-flap">♡</span><span class="letter-label">Quando você duvidar de si</span><i aria-hidden="true">para maria</i></button></article>
@@ -109,7 +110,7 @@
           </div>
           <p class="letter-reveal" id="letter-reveal" aria-live="polite">Escolha uma carta para abrir.</p>
         </section>
-        <section class="love-garden" aria-labelledby="garden-title">
+        <section class="love-garden" aria-labelledby="garden-title" hidden>
           <div class="garden-copy"><span class="eyebrow">um jardim só nosso</span><h3 id="garden-title">Cultive um<br /><em>carinho.</em></h3><p>Escolhe uma flor. Em cada uma eu escondi uma coisa que queria te dizer.</p></div>
           <div class="garden-bed" role="group" aria-label="Flores com mensagens">
             <button type="button" class="garden-flower flower-pink" data-garden="Você deixa os meus dias mais coloridos sem nem perceber."><span>✿</span><small>leveza</small></button>
@@ -119,7 +120,7 @@
           </div>
           <p class="garden-reveal" id="garden-reveal" aria-live="polite">Uma flor está esperando você.</p>
         </section>
-        <section class="heart-game" aria-labelledby="heart-game-title">
+        <section class="heart-game" aria-labelledby="heart-game-title" hidden>
           <div class="heart-game-intro"><span class="eyebrow">missão: pegar carinho</span><h3 id="heart-game-title">Colecione<br /><em>nossos corações.</em></h3><p>Clique nos corações antes que eles sumam. Dez deles guardam uma surpresa.</p><button class="game-start" id="heart-game-start" type="button">Começar o jogo <span>♡</span></button></div>
           <div class="heart-playground" id="heart-playground" aria-label="Área do jogo" aria-live="polite">
             <span class="game-placeholder">pronta para brincar?</span>
@@ -127,7 +128,7 @@
           </div>
           <p class="heart-game-message" id="heart-game-message" aria-live="polite">Cada coração é só uma desculpa para te mandar mais carinho.</p>
         </section>
-        <section class="midnight-sky" aria-labelledby="sky-title">
+        <section class="midnight-sky" aria-labelledby="sky-title" hidden>
           <div class="sky-copy"><span class="eyebrow">para as nossas madrugadas</span><h3 id="sky-title">Um céu inteiro<br /><em>para você.</em></h3><p>Tem estrela que parece só um ponto de luz. Até você tocar nela.</p></div>
           <div class="constellation" role="group" aria-label="Estrelas com mensagens">
             <button type="button" class="sky-star star-one" data-star="Eu ainda acho muito bonito que tudo tenha começado em uma madrugada qualquer."><span>✦</span><i aria-hidden="true"></i></button>
@@ -139,12 +140,12 @@
           </div>
           <p class="sky-reveal" id="sky-reveal" aria-live="polite">Escolhe uma estrela e faz um pedido.</p>
         </section>
-        <section class="chapter-list" aria-label="Capítulos">
+        <section class="chapter-list" aria-label="Capítulos" hidden>
           <div class="section-heading"><span>Nossas lembranças</span><small>sete pedacinhos de nós</small></div>
           <div id="chapters" class="chapters"></div>
         </section>
 
-        <section class="quality-section" aria-label="Mini-game das qualidades">
+        <section class="quality-section" aria-label="Mini-game das qualidades" hidden>
           <div id="quality-game"></div>
         </section>
       </section>
@@ -171,6 +172,6 @@
       </div>
     </div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="js/app.js?v=music-30s-16"></script>
+    <script type="module" src="js/app.js?v=story-flow-17"></script>
   </body>
 </html>

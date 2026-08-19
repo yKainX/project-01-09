@@ -7,7 +7,7 @@ import { bindGallery } from './gallery.js';
 import { bindMusicPlayers } from './music.js';
 import { bindMemoryCarousels } from './memory-carousel.js';
 import { bindLoveInteractions } from './love-interactions.js';
-import { chapters, contentFor } from './timeline.js?v=music-30s-16';
+import { activityFor, chapters, contentFor } from './timeline.js?v=story-flow-17';
 import { mountQualityGame } from './game.js';
 
 const ACCESS_CODE = '0105';
@@ -55,7 +55,8 @@ function openChapter(index, writeHistory = true) {
   currentChapterIndex = index;
   state.lastChapterViewed = index;
   saveState(state);
-  chapterView.innerHTML = `<article class="chapter-page chapter-experience chapter-type-${chapter.type}"><header class="chapter-cover"><button class="back-button" id="back-button" type="button">← voltar para nós</button><span class="chapter-number">CENA ${String(index + 1).padStart(2, '0')}</span><h2 class="chapter-title">${chapter.title}</h2><p class="chapter-intro">${chapter.intro}</p><span class="cover-mark" aria-hidden="true">✦</span></header><div class="content-area">${contentFor(chapter)}</div><div class="complete-row"><button class="complete-button ${state.completed.includes(index) ? 'completed' : ''}" id="complete-button" type="button" ${state.completed.includes(index) ? 'disabled' : ''}>${state.completed.includes(index) ? 'Lembrança guardada ✓' : 'Guardar esta lembrança'}</button></div></article>`;
+  const nextLabel = index === chapters.length - 1 ? 'Guardar nossa história' : 'Seguir para a próxima lembrança →';
+  chapterView.innerHTML = `<article class="chapter-page chapter-experience chapter-type-${chapter.type}"><header class="chapter-cover"><button class="back-button" id="back-button" type="button">← voltar para o começo</button><span class="chapter-number">CENA ${String(index + 1).padStart(2, '0')}</span><h2 class="chapter-title">${chapter.title}</h2><p class="chapter-intro">${chapter.intro}</p><span class="cover-mark" aria-hidden="true">✦</span></header><div class="content-area">${contentFor(chapter)}${activityFor(index)}</div><div class="complete-row"><button class="complete-button ${state.completed.includes(index) ? 'completed' : ''}" id="complete-button" type="button" ${state.completed.includes(index) ? 'disabled' : ''}>${state.completed.includes(index) ? 'Lembrança guardada ✓' : nextLabel}</button></div></article>`;
   renderChapters();
   showView('#chapter-view');
   if (writeHistory) history.pushState({ chapter: index }, '', `#capitulo-${index + 1}`);
@@ -68,6 +69,7 @@ function openChapter(index, writeHistory = true) {
   bindGallery(state);
   bindMusicPlayers();
   bindMemoryCarousels();
+  bindLoveInteractions(chapterView);
   backButton?.focus();
 }
 
@@ -90,6 +92,7 @@ function completeChapter(index) {
   button.textContent = 'Lembrança guardada ✓';
   button.classList.add('completed');
   button.disabled = true;
+  if (index < chapters.length - 1) window.setTimeout(() => openChapter(index + 1), 650);
 }
 
 function closeModal() {

@@ -4,27 +4,27 @@ const moments = {
   remember: 'Eu lembro de uma partida às 03:32, de você puxando assunto com todo mundo e de mim sem imaginar o quanto você ainda ia significar para mim.'
 };
 
-export function bindLoveInteractions() {
-  const momentAnswer = document.querySelector('#moment-answer');
-  document.querySelectorAll('[data-moment]').forEach((button) => {
+export function bindLoveInteractions(root = document) {
+  const momentAnswer = root.querySelector('#moment-answer');
+  root.querySelectorAll('[data-moment]').forEach((button) => {
     button.addEventListener('click', () => {
-      document.querySelectorAll('[data-moment]').forEach((item) => item.classList.toggle('selected', item === button));
+      root.querySelectorAll('[data-moment]').forEach((item) => item.classList.toggle('selected', item === button));
       momentAnswer.textContent = moments[button.dataset.moment];
       momentAnswer.classList.add('is-revealed');
     });
   });
 
-  const reasonReveal = document.querySelector('#reason-reveal');
-  document.querySelectorAll('.reason-note').forEach((button) => {
+  const reasonReveal = root.querySelector('#reason-reveal');
+  root.querySelectorAll('.reason-note').forEach((button) => {
     button.addEventListener('click', () => {
-      document.querySelectorAll('.reason-note').forEach((item) => item.classList.toggle('selected', item === button));
+      root.querySelectorAll('.reason-note').forEach((item) => item.classList.toggle('selected', item === button));
       reasonReveal.textContent = button.dataset.reason;
       reasonReveal.classList.add('is-revealed');
     });
   });
 
-  const letterReveal = document.querySelector('#letter-reveal');
-  document.querySelectorAll('.sealed-letter').forEach((button) => {
+  const letterReveal = root.querySelector('#letter-reveal');
+  root.querySelectorAll('.sealed-letter').forEach((button) => {
     button.addEventListener('click', () => {
       if (button.classList.contains('is-sending')) return;
       button.classList.add('is-sending');
@@ -58,20 +58,20 @@ export function bindLoveInteractions() {
     });
   });
 
-  const gardenReveal = document.querySelector('#garden-reveal');
-  document.querySelectorAll('.garden-flower').forEach((flower) => {
+  const gardenReveal = root.querySelector('#garden-reveal');
+  root.querySelectorAll('.garden-flower').forEach((flower) => {
     flower.addEventListener('click', () => {
-      document.querySelectorAll('.garden-flower').forEach((item) => item.classList.toggle('bloomed', item === flower));
+      root.querySelectorAll('.garden-flower').forEach((item) => item.classList.toggle('bloomed', item === flower));
       gardenReveal.textContent = flower.dataset.garden;
       gardenReveal.classList.add('is-revealed');
     });
   });
 
-  const skyReveal = document.querySelector('#sky-reveal');
-  document.querySelectorAll('.sky-star').forEach((star) => {
+  const skyReveal = root.querySelector('#sky-reveal');
+  root.querySelectorAll('.sky-star').forEach((star) => {
     star.addEventListener('click', () => {
       if (star.classList.contains('is-shining')) return;
-      document.querySelectorAll('.sky-star').forEach((item) => item.classList.remove('discovered'));
+      root.querySelectorAll('.sky-star').forEach((item) => item.classList.remove('discovered'));
       star.classList.add('is-shining');
       skyReveal.textContent = 'Essa estrela está brilhando para você...';
       skyReveal.classList.add('is-revealed');
@@ -91,10 +91,10 @@ export function bindLoveInteractions() {
     });
   });
 
-  const startGame = document.querySelector('#heart-game-start');
-  const playground = document.querySelector('#heart-playground');
-  const score = document.querySelector('#heart-score');
-  const gameMessage = document.querySelector('#heart-game-message');
+  const startGame = root.querySelector('#heart-game-start');
+  const playground = root.querySelector('#heart-playground');
+  const score = root.querySelector('#heart-score');
+  const gameMessage = root.querySelector('#heart-game-message');
   let heartsCaught = 0;
   let heartTimer;
 
