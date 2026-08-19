@@ -46,8 +46,9 @@ function renderChapters() {
     const locked = index >= unlocked;
     const isActive = currentChapterIndex === index;
     return `<button class="chapter-card ${locked ? 'locked' : ''} ${done ? 'done' : ''} ${isActive ? 'active' : ''}" type="button" data-chapter="${index}" aria-label="${chapter.title}${locked ? ', bloqueado' : ''}" aria-disabled="${locked}" ${isActive ? 'aria-current="page"' : ''}><span class="card-no">${String(index + 1).padStart(2, '0')}</span><span class="card-body"><strong>${chapter.title}</strong><small>${locked ? 'Aguardando você' : chapter.subtitle}</small></span><span class="card-state">${done ? '✓' : locked ? '⌕' : '→'}</span></button>`;
-  }).join('');
+  }).join('') + (storyFinished ? '<button class="chapter-card finale-menu-card" type="button" data-finale aria-label="Ver encerramento"><span class="card-no">∞</span><span class="card-body"><strong>Nosso encerramento</strong><small>um coração que nasceu de tudo isso</small></span><span class="card-state">♥</span></button>' : '');
   chapterContainer.querySelectorAll('[data-chapter]').forEach((item) => item.addEventListener('click', () => openChapter(Number(item.dataset.chapter))));
+  chapterContainer.querySelector('[data-finale]')?.addEventListener('click', () => showFinale(true));
   const continueButton = document.querySelector('#continue-button');
   if (continueButton) continueButton.innerHTML = storyFinished ? 'Escolher uma lembrança <span>↓</span>' : 'Começar por nós <span>→</span>';
   updateProgress(state, chapters.length);
@@ -115,30 +116,56 @@ function completeChapter(index) {
 
 function showFinale(autoplay = true, writeHistory = true) {
   currentChapterIndex = null;
-  chapterView.innerHTML = `<article class="finale-page" aria-labelledby="finale-title"><div class="finale-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="finale-heart-wrap" aria-hidden="true"><svg class="finale-heart" viewBox="0 0 512 512" role="img"><path class="finale-heart-shape" d="M256 448S64 320 64 176c0-62 50-112 112-112 36 0 68 17 80 44 12-27 44-44 80-44 62 0 112 50 112 112 0 144-192 272-192 272Z" /></svg><span class="heart-spark spark-one">✦</span><span class="heart-spark spark-two">♡</span><span class="heart-spark spark-three">✦</span></div><section class="finale-copy"><span class="eyebrow">a nossa história continua</span><p class="finale-line line-one">Começou numa partida perdida em uma madrugada.</p><p class="finale-line line-two">Virou conversas, risadas e noites em call.</p><p class="finale-line line-three">Virou cuidado, música, planos e um lugar de paz.</p><h2 id="finale-title" class="finale-line line-four">E em cada pedaço,<br /><em>eu fui entendendo:</em></h2><p class="finale-love finale-line line-five">eu amo você, Maria.</p><p class="finale-promise finale-line line-six">Eu escolho você hoje e quero continuar escolhendo. Quero estar nas suas vitórias, nos seus dias difíceis, nas suas risadas sem sentido e nos nossos silêncios. Quero construir mais noites, mais histórias e um futuro em que a gente continue sendo casa um para o outro.</p><p class="finale-promise finale-line line-seven">Obrigado por ter aparecido naquela madrugada. Você transformou um acaso em uma das coisas mais bonitas que já aconteceram comigo.</p><button class="finale-back" id="finale-back" type="button">Rever nossa história <span>↺</span></button></section><audio class="finale-audio" preload="auto" src="assets/audio/pupila.mp3"></audio></article>`;
+  chapterView.innerHTML = `<article class="finale-page" aria-labelledby="finale-title"><div class="finale-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="finale-heart-wrap" aria-hidden="true"><svg class="finale-heart" viewBox="0 0 512 512" role="img"><path class="finale-heart-shape" d="M256 448S64 320 64 176c0-62 50-112 112-112 36 0 68 17 80 44 12-27 44-44 80-44 62 0 112 50 112 112 0 144-192 272-192 272Z" /></svg><span class="heart-spark spark-one">✦</span><span class="heart-spark spark-two">♡</span><span class="heart-spark spark-three">✦</span></div><section class="finale-copy"><span class="eyebrow">a nossa história continua</span><p class="finale-line line-one">Começou numa partida perdida em uma madrugada.</p><p class="finale-line line-two">Virou conversas, risadas e noites em call.</p><p class="finale-line line-three">Virou cuidado, música, planos e um lugar de paz.</p><h2 id="finale-title" class="finale-line line-four">E em cada pedaço,<br /><em>eu fui entendendo:</em></h2><p class="finale-love finale-line line-five">eu amo você, Maria.</p><p class="finale-promise finale-line line-six">Eu escolho você hoje e quero continuar escolhendo. Quero estar nas suas vitórias, nos seus dias difíceis, nas suas risadas sem sentido e nos nossos silêncios. Quero construir mais noites, mais histórias e um futuro em que a gente continue sendo casa um para o outro.</p><p class="finale-promise finale-line line-seven">Obrigado por ter aparecido naquela madrugada. Você transformou um acaso em uma das coisas mais bonitas que já aconteceram comigo.</p><button class="finale-music-control" id="finale-music-control" type="button">♪ Tocar Pupila</button><button class="finale-back" id="finale-back" type="button">Rever nossa história <span>↺</span></button></section><audio class="finale-audio" preload="auto" src="assets/audio/pupila.mp3"></audio></article>`;
   renderChapters();
   showView('#chapter-view');
   if (writeHistory) history.pushState({ finale: true }, '', '#final');
   document.querySelector('#finale-back')?.addEventListener('click', () => goHome());
 
   const audio = chapterView.querySelector('.finale-audio');
-  if (!audio || !autoplay) return;
-  audio.addEventListener('timeupdate', () => { if (audio.currentTime >= 120) audio.pause(); });
-  const playFinalTrack = async () => {
-    audio.currentTime = 60;
+  const musicControl = chapterView.querySelector('#finale-music-control');
+  if (!audio || !musicControl) return;
+  let fadeFrame;
+  const prepareAudio = async () => {
+    if (audio.readyState >= 1) return;
+    await new Promise((resolve) => audio.addEventListener('loadedmetadata', resolve, { once: true }));
+  };
+  const playFinalTrack = async (restart = false) => {
+    await prepareAudio();
+    if (restart || audio.currentTime < 60 || audio.currentTime >= 120) audio.currentTime = 60;
+    if (fadeFrame) cancelAnimationFrame(fadeFrame);
     audio.volume = 0;
     try {
       await audio.play();
+      musicControl.textContent = 'Ⅱ Pupila tocando';
       const startedAt = performance.now();
       const fadeIn = (now) => {
         audio.volume = Math.min(.72, ((now - startedAt) / 1200) * .72);
-        if (audio.volume < .72 && !audio.paused) requestAnimationFrame(fadeIn);
+        if (audio.volume < .72 && !audio.paused) fadeFrame = requestAnimationFrame(fadeIn);
       };
-      requestAnimationFrame(fadeIn);
-    } catch {}
+      fadeFrame = requestAnimationFrame(fadeIn);
+      return true;
+    } catch {
+      musicControl.textContent = '♪ Tocar Pupila';
+      return false;
+    }
   };
-  if (audio.readyState >= 1) playFinalTrack();
-  else audio.addEventListener('loadedmetadata', playFinalTrack, { once: true });
+  audio.addEventListener('timeupdate', () => {
+    if (audio.currentTime >= 120) {
+      audio.pause();
+      audio.currentTime = 60;
+      musicControl.textContent = '♪ Tocar Pupila';
+    }
+  });
+  musicControl.addEventListener('click', async () => {
+    if (!audio.paused) {
+      audio.pause();
+      musicControl.textContent = '♪ Tocar Pupila';
+      return;
+    }
+    await playFinalTrack(false);
+  });
+  if (autoplay) playFinalTrack(true);
 }
 
 function closeModal() {
