@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/animations.css?v=experience-4" />
+    <link rel="stylesheet" href="css/animations.css?v=additions-5" />
   </head>
   <body>
     <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -51,6 +51,63 @@
             <article><span>04</span><p>E amo que, em cada dia, eu continuo encontrando novos motivos para escolher você.</p></article>
           </div>
           <div class="love-promise"><span>uma promessa simples</span><p>Quero continuar ficando: nas calls, nos silêncios, nas zoeiras e em tudo de bonito que ainda pode ser nosso.</p></div>
+        </section>
+        <section class="moment-selector" aria-labelledby="moment-title">
+          <div><span class="eyebrow">escolhe um momento</span><h3 id="moment-title">O que você precisa<br /><em>agora?</em></h3></div>
+          <div class="moment-options">
+            <button type="button" data-moment="care">Um carinho</button>
+            <button type="button" data-moment="smile">Um sorriso</button>
+            <button type="button" data-moment="remember">Lembrar de nós</button>
+          </div>
+          <p class="moment-answer" id="moment-answer" aria-live="polite">Escolhe uma das opções. Eu deixei uma coisinha em cada uma.</p>
+        </section>
+        <section class="real-timeline" aria-labelledby="timeline-title">
+          <div class="section-heading"><span id="timeline-title">Como você entrou nos meus dias</span><small>sem seguir roteiro</small></div>
+          <ol>
+            <li><span>01.05 · 03:32</span><p>Uma partida aleatória de Valorant que parecia só mais uma madrugada.</p></li>
+            <li><span>depois disso</span><p>Um convite para jogar, outro depois, e as conversas que foram ficando.</p></li>
+            <li><span>em alguma call</span><p>O “mô”, as noites juntos e a sensação de que isso já era mais que um jogo.</p></li>
+            <li><span>agora</span><p>Você em pensamentos no meio do trabalho e vontade de chegar logo a hora de ficar perto.</p></li>
+          </ol>
+        </section>
+        <section class="reasons-section" aria-labelledby="reasons-title">
+          <div class="section-heading"><span id="reasons-title">Pequenos motivos para amar você</span><small>toque em cada um</small></div>
+          <div class="reasons-wall">
+            <button type="button" class="reason-note" data-reason="Sua risada faz qualquer momento ficar melhor.">sua risada</button>
+            <button type="button" class="reason-note" data-reason="Seu jeito de falar de mil assuntos deixa tudo mais divertido.">suas conversas</button>
+            <button type="button" class="reason-note" data-reason="Você tem um jeito bonito de ser intensa e verdadeira.">sua intensidade</button>
+            <button type="button" class="reason-note" data-reason="Você é você, e isso já é mais do que suficiente.">sua autenticidade</button>
+            <button type="button" class="reason-note" data-reason="Mesmo de longe, você consegue fazer eu me sentir acompanhado.">sua presença</button>
+            <button type="button" class="reason-note" data-reason="Cada reação sua vira uma lembrança que eu quero guardar.">seu jeitinho</button>
+          </div>
+          <p class="reason-reveal" id="reason-reveal" aria-live="polite">Começa por qualquer um.</p>
+        </section>
+        <section class="manual-section" aria-labelledby="manual-title">
+          <div class="manual-cover"><span class="eyebrow">edição única</span><h3 id="manual-title">Manual de como<br /><em>amar a Maria.</em></h3><small>não existem regras exatas, mas existem pistas.</small></div>
+          <div class="manual-pages">
+            <article><span>01</span><h4>Escute tudo.</h4><p>Até os assuntos mais aleatórios ficam bons quando vêm de você.</p></article>
+            <article><span>02</span><h4>Fique por perto.</h4><p>Em dias leves ou pesados, companhia também é uma forma de carinho.</p></article>
+            <article><span>03</span><h4>Não esqueça o kit.</h4><p>Ursinhos, gatos, cachorros, Senhor dos Anéis e um doce depois.</p></article>
+            <article><span>04</span><h4>Ria junto.</h4><p>Porque uma call, um jogo e a sua risada já podem salvar um dia inteiro.</p></article>
+          </div>
+        </section>
+        <section class="future-section" aria-labelledby="future-title">
+          <span class="eyebrow">ainda tem muito para nós</span><h3 id="future-title">Coisas que eu quero<br /><em>viver com você.</em></h3>
+          <ul>
+            <li><span>✦</span>Mais noites em call sem perceber a hora passar.</li>
+            <li><span>✦</span>Mais jogos, zoeiras e histórias que só fazem sentido para nós.</li>
+            <li><span>✦</span>Mais conversas sinceras e espaço para conhecer você todos os dias.</li>
+            <li><span>✦</span>Mais motivos para escolher ficar perto.</li>
+          </ul>
+        </section>
+        <section class="letters-section" aria-labelledby="letters-title">
+          <div class="section-heading"><span id="letters-title">Cartas para dias específicos</span><small>abra quando quiser</small></div>
+          <div class="sealed-letters">
+            <article><button type="button" class="sealed-letter" data-letter="Você é muito maior do que qualquer dúvida que aparecer. Seu jeito é raro, bonito e merece ser amado exatamente como é."><span>♡</span>Quando você duvidar de si</button></article>
+            <article><button type="button" class="sealed-letter" data-letter="Mesmo quando não estamos no mesmo lugar, tem um pedaço meu contando as horas para te encontrar de novo em alguma call."><span>✦</span>Quando der saudade</button></article>
+            <article><button type="button" class="sealed-letter" data-letter="Tudo começou por acaso às 03:32. E eu ainda acho bonito demais pensar que você foi a pessoa que caiu naquela mesma partida."><span>01.05</span>Quando quiser lembrar de nós</button></article>
+          </div>
+          <p class="letter-reveal" id="letter-reveal" aria-live="polite">Escolha uma carta para abrir.</p>
         </section>
         <section class="chapter-list" aria-label="Capítulos">
           <div class="section-heading"><span>Nossas lembranças</span><small>sete pedacinhos de nós</small></div>

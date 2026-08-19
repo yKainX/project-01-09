@@ -6,6 +6,7 @@ import { bindPlayers } from './audio.js';
 import { bindGallery } from './gallery.js';
 import { bindMusicPlayers } from './music.js';
 import { bindMemoryCarousels } from './memory-carousel.js';
+import { bindLoveInteractions } from './love-interactions.js';
 import { chapters, contentFor } from './timeline.js';
 import { mountQualityGame } from './game.js';
 
@@ -143,6 +144,7 @@ window.addEventListener('popstate', syncRoute);
 
 renderChapters();
 mountQualityGame();
+bindLoveInteractions();
 window.setTimeout(() => {
   document.querySelector('#boot-screen').style.opacity = '0';
   document.querySelector('#boot-screen').style.pointerEvents = 'none';
