@@ -21,7 +21,6 @@ function renderMusic() {
     ['Linda, Louca e Mimada', 'Oriente', 'assets/audio/linda-louca-e-mimada.mp3', 72, 84, ['Você faz tudo do seu jeito.', 'E talvez seja exatamente por isso', 'que eu gosto tanto de você.']],
     ['Like I Want You', 'Giveon', 'assets/audio/like-i-want-you.mp3', 69, 81, ['Tem coisa que eu tento disfarçar.', 'Mas o meu coração sempre entrega', 'quando o assunto é você.']],
     ['Pupila', 'ANAVITÓRIA e Vitor Kley', 'assets/audio/pupila.mp3', 60, 72, ['Você aparece nos meus pensamentos.', 'E eu gosto até das partes do dia', 'em que eu paro só para lembrar de você.']],
-    ['Cuidado', 'Gaab', 'assets/audio/cuidado.mp3', 64, 76, ['Eu quero ser abrigo,', 'cuidado e companhia', 'nos seus dias mais difíceis.']],
     ['Meu Abrigo', 'Melim', 'assets/audio/meu-abrigo.mp3', 81, 93, ['Você é meu lugar de paz.', 'Meu lugar favorito é perto de você.', 'Sempre foi, sem você saber.']]
   ];
   const firstLines = tracks[0][5];
