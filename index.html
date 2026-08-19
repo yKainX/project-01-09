@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>M.A.R.I.A.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+  </head>
+  <body>
+    <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+    <section class="boot-screen" id="boot-screen" aria-label="Carregando M.A.R.I.A.">
+      <div class="boot-content">
+        <span class="eyebrow">um lugar para guardar</span>
+        <h1>M.A.R.I.A.</h1>
+        <p>Quatro meses de uma história que começou por acaso.</p>
+        <div class="boot-loader"><span></span></div>
+      </div>
+    </section>
+
+    <main class="app is-hidden" id="app" inert>
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="Início M.A.R.I.A.">M.A.R.I.A.</a>
+        <div class="progress-wrap">
+          <div class="progress-copy"><span>Conhecendo Maria</span><span id="progress-label">1 de 7</span></div>
+          <div class="progress-track" aria-label="Progresso"><span id="progress-bar"></span></div>
+        </div>
+      </header>
+
+      <section id="home" class="view active-view" aria-labelledby="welcome-title">
+        <div class="hero">
+          <span class="eyebrow">01.05.2026 · 03:32</span>
+          <h2 id="welcome-title">Quatro meses<br /><em>de nós.</em></h2>
+          <p>Uma partida aleatória. E, desde então, tantos motivos para ficar.</p>
+          <button class="soft-button" id="continue-button" type="button">Continuar de onde parou <span>→</span></button>
+        </div>
+        <section class="chapter-list" aria-label="Capítulos">
+          <div class="section-heading"><span>Capítulos</span><small>toque para explorar</small></div>
+          <div id="chapters" class="chapters"></div>
+        </section>
+
+        <section class="quality-section" aria-label="Mini-game das qualidades">
+          <div id="quality-game"></div>
+        </section>
+      </section>
+
+      <section id="chapter-view" class="view" aria-live="polite"></section>
+    </main>
+
+    <section class="access-screen" id="access-screen" aria-labelledby="access-title">
+      <form class="access-card" id="access-form">
+        <span class="eyebrow">um lugar só nosso</span>
+        <h2 id="access-title">M.A.R.I.A.</h2>
+        <p>Digite a data que guarda o começo da nossa história.</p>
+        <label class="sr-only" for="access-code">Senha de acesso</label>
+        <input id="access-code" name="access-code" type="password" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="4" placeholder="••••" required />
+        <button class="soft-button" type="submit">Entrar <span>→</span></button>
+        <p class="access-error" id="access-error" role="alert" hidden>Essa não é a data certa. Tenta mais uma vez.</p>
+      </form>
+    </section>
+
+    <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+        <button class="close-button" id="modal-close" type="button" aria-label="Fechar">×</button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
