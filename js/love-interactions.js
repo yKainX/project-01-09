@@ -67,6 +67,15 @@ export function bindLoveInteractions() {
     });
   });
 
+  const skyReveal = document.querySelector('#sky-reveal');
+  document.querySelectorAll('.sky-star').forEach((star) => {
+    star.addEventListener('click', () => {
+      document.querySelectorAll('.sky-star').forEach((item) => item.classList.toggle('discovered', item === star));
+      skyReveal.textContent = star.dataset.star;
+      skyReveal.classList.add('is-revealed');
+    });
+  });
+
   const startGame = document.querySelector('#heart-game-start');
   const playground = document.querySelector('#heart-playground');
   const score = document.querySelector('#heart-score');
