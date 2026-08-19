@@ -10,16 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/animations.css?v=night-1" />
+    <link rel="stylesheet" href="css/animations.css?v=archive-2" />
   </head>
   <body>
     <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
     <section class="boot-screen" id="boot-screen" aria-label="Carregando M.A.R.I.A.">
       <div class="boot-content">
-        <span class="eyebrow">um lugar para guardar</span>
+        <span class="eyebrow">arquivo particular · 0105</span>
         <h1>M.A.R.I.A.</h1>
-        <p>Quatro meses de uma história que começou por acaso.</p>
+        <p>Uma coleção de coisas que eu não queria esquecer.</p>
         <div class="boot-loader"><span></span></div>
       </div>
     </section>
@@ -28,21 +28,21 @@
       <header class="topbar">
         <a class="brand" href="#home" aria-label="Início M.A.R.I.A.">M.A.R.I.A.</a>
         <div class="progress-wrap">
-          <div class="progress-copy"><span>Conhecendo Maria</span><span id="progress-label">1 de 7</span></div>
+          <div class="progress-copy"><span>Índice de lembranças</span><span id="progress-label">1 de 7</span></div>
           <div class="progress-track" aria-label="Progresso"><span id="progress-bar"></span></div>
         </div>
       </header>
 
       <section id="home" class="view active-view" aria-labelledby="welcome-title">
         <div class="hero">
-          <span class="eyebrow">01.05.2026 · 03:32</span>
-          <h2 id="welcome-title">Quatro meses<br /><em>de nós.</em></h2>
-          <p>Uma partida aleatória. E, desde então, tantos motivos para ficar.</p>
-          <div class="hero-note" aria-label="Uma história em sete capítulos"><span>uma história em</span><strong>07 capítulos</strong><i aria-hidden="true">✦</i></div>
-          <button class="soft-button" id="continue-button" type="button">Continuar de onde parou <span>→</span></button>
+          <span class="eyebrow">arquivo 01 · aberto em 01.05.2026</span>
+          <h2 id="welcome-title">Coisas que eu<br /><em>não queria esquecer.</em></h2>
+          <p>Não é uma linha do tempo. É um pequeno arquivo de momentos que, de algum jeito, ficaram.</p>
+          <div class="hero-note" aria-label="Sete fragmentos para abrir"><span>coleção organizada em</span><strong>07 fragmentos</strong><i aria-hidden="true">✦</i></div>
+          <button class="soft-button" id="continue-button" type="button">Abrir o arquivo <span>→</span></button>
         </div>
         <section class="chapter-list" aria-label="Capítulos">
-          <div class="section-heading"><span>Capítulos</span><small>toque para explorar</small></div>
+          <div class="section-heading"><span>Índice</span><small>sete coisas para abrir</small></div>
           <div id="chapters" class="chapters"></div>
         </section>
 
@@ -56,9 +56,9 @@
 
     <section class="access-screen" id="access-screen" aria-labelledby="access-title">
       <form class="access-card" id="access-form">
-        <span class="eyebrow">um lugar só nosso</span>
-        <h2 id="access-title">M.A.R.I.A.</h2>
-        <p>Digite a data que guarda o começo da nossa história.</p>
+        <span class="eyebrow">arquivo de lembranças</span>
+        <h2 id="access-title">Para você.</h2>
+        <p>Uma data abre tudo o que foi guardado aqui.</p>
         <label class="sr-only" for="access-code">Senha de acesso</label>
         <input id="access-code" name="access-code" type="password" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="4" placeholder="••••" required />
         <button class="soft-button" type="submit">Entrar <span>→</span></button>
