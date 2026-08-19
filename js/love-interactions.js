@@ -70,9 +70,24 @@ export function bindLoveInteractions() {
   const skyReveal = document.querySelector('#sky-reveal');
   document.querySelectorAll('.sky-star').forEach((star) => {
     star.addEventListener('click', () => {
-      document.querySelectorAll('.sky-star').forEach((item) => item.classList.toggle('discovered', item === star));
-      skyReveal.textContent = star.dataset.star;
+      if (star.classList.contains('is-shining')) return;
+      document.querySelectorAll('.sky-star').forEach((item) => item.classList.remove('discovered'));
+      star.classList.add('is-shining');
+      skyReveal.textContent = 'Essa estrela está brilhando para você...';
       skyReveal.classList.add('is-revealed');
+      window.setTimeout(() => {
+        const backdrop = document.querySelector('#modal-backdrop');
+        const content = document.querySelector('#modal-content');
+        content.innerHTML = '<div class="star-modal-mark">✦</div><span class="letter-modal-kicker">uma estrela para você</span><h3 id="modal-title">Uma luz no nosso céu</h3><p></p>';
+        content.querySelector('p').textContent = star.dataset.star;
+        document.dispatchEvent(new CustomEvent('maria:modalopen', { detail: star }));
+        backdrop.classList.add('open');
+        backdrop.setAttribute('aria-hidden', 'false');
+        document.querySelector('#modal-close').focus();
+        star.classList.remove('is-shining');
+        star.classList.add('discovered');
+        skyReveal.textContent = 'A estrela deixou uma mensagem para você. ✦';
+      }, 900);
     });
   });
 
