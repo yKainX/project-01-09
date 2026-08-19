@@ -99,6 +99,29 @@ function completeChapter(index) {
   button.classList.add('completed');
   button.disabled = true;
   if (index < chapters.length - 1) window.setTimeout(() => openChapter(index + 1), 650);
+  else window.setTimeout(() => showFinale(), 700);
+}
+
+function showFinale(autoplay = true, writeHistory = true) {
+  currentChapterIndex = null;
+  chapterView.innerHTML = `<article class="finale-page" aria-labelledby="finale-title"><div class="finale-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="finale-heart-wrap" aria-hidden="true"><div class="finale-heart"></div><span class="heart-spark spark-one">✦</span><span class="heart-spark spark-two">♡</span><span class="heart-spark spark-three">✦</span></div><section class="finale-copy"><span class="eyebrow">a nossa história continua</span><p class="finale-line line-one">Começou numa partida perdida em uma madrugada.</p><p class="finale-line line-two">Virou conversas, risadas e noites em call.</p><p class="finale-line line-three">Virou cuidado, música, planos e um lugar de paz.</p><h2 id="finale-title" class="finale-line line-four">E em cada pedaço,<br /><em>eu fui entendendo:</em></h2><p class="finale-love finale-line line-five">eu amo você, Maria.</p><p class="finale-promise finale-line line-six">Eu escolho você hoje — e quero continuar escolhendo, em todos os dias que ainda forem nossos.</p><button class="finale-back" id="finale-back" type="button">Rever nossa história <span>↺</span></button></section><audio class="finale-audio" preload="auto" src="assets/audio/pupila.mp3"></audio></article>`;
+  renderChapters();
+  showView('#chapter-view');
+  if (writeHistory) history.pushState({ finale: true }, '', '#final');
+  document.querySelector('#finale-back')?.addEventListener('click', () => goHome());
+
+  const audio = chapterView.querySelector('.finale-audio');
+  if (!audio || !autoplay) return;
+  audio.currentTime = 60;
+  audio.volume = 0;
+  audio.play().catch(() => {});
+  const startedAt = performance.now();
+  const fadeIn = (now) => {
+    audio.volume = Math.min(.72, ((now - startedAt) / 1200) * .72);
+    if (audio.volume < .72 && !audio.paused) requestAnimationFrame(fadeIn);
+  };
+  requestAnimationFrame(fadeIn);
+  audio.addEventListener('timeupdate', () => { if (audio.currentTime >= 90) audio.pause(); });
 }
 
 function closeModal() {
@@ -111,6 +134,7 @@ function closeModal() {
 function syncRoute() {
   const match = location.hash.match(/^#capitulo-(\d+)$/);
   if (match) openChapter(Number(match[1]) - 1, false);
+  else if (location.hash === '#final') showFinale(false, false);
   else goHome(false);
 }
 
