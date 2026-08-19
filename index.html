@@ -101,13 +101,31 @@
           </ul>
         </section>
         <section class="letters-section" aria-labelledby="letters-title">
-          <div class="section-heading"><span id="letters-title">Cartas para dias específicos</span><small>abra quando quiser</small></div>
-          <div class="sealed-letters">
-            <article><button type="button" class="sealed-letter" data-letter="Você é muito maior do que qualquer dúvida que aparecer. Seu jeito é raro, bonito e merece ser amado exatamente como é."><span>♡</span>Quando você duvidar de si</button></article>
-            <article><button type="button" class="sealed-letter" data-letter="Mesmo quando não estamos no mesmo lugar, tem um pedaço meu contando as horas para te encontrar de novo em alguma call."><span>✦</span>Quando der saudade</button></article>
-            <article><button type="button" class="sealed-letter" data-letter="Tudo começou por acaso às 03:32. E eu ainda acho bonito demais pensar que você foi a pessoa que caiu naquela mesma partida."><span>01.05</span>Quando quiser lembrar de nós</button></article>
+          <div class="section-heading"><span id="letters-title">Cartinhas para você</span><small>toque para abrir</small></div>
+          <div class="sealed-letters animated-letters">
+            <article><button type="button" class="sealed-letter" data-letter="Você é muito maior do que qualquer dúvida que aparecer. Seu jeito é raro, bonito e merece ser amado exatamente como é."><span class="letter-flap">♡</span><span class="letter-label">Quando você duvidar de si</span><i aria-hidden="true">para maria</i></button></article>
+            <article><button type="button" class="sealed-letter" data-letter="Mesmo quando não estamos no mesmo lugar, tem um pedaço meu contando as horas para te encontrar de novo em alguma call."><span class="letter-flap">✦</span><span class="letter-label">Quando der saudade</span><i aria-hidden="true">com carinho</i></button></article>
+            <article><button type="button" class="sealed-letter" data-letter="Tudo começou por acaso às 03:32. E eu ainda acho bonito demais pensar que você foi a pessoa que caiu naquela mesma partida."><span class="letter-flap">01.05</span><span class="letter-label">Quando quiser lembrar de nós</span><i aria-hidden="true">nossa história</i></button></article>
           </div>
           <p class="letter-reveal" id="letter-reveal" aria-live="polite">Escolha uma carta para abrir.</p>
+        </section>
+        <section class="love-garden" aria-labelledby="garden-title">
+          <div class="garden-copy"><span class="eyebrow">um jardim só nosso</span><h3 id="garden-title">Cultive um<br /><em>carinho.</em></h3><p>Escolhe uma flor. Em cada uma eu escondi uma coisa que queria te dizer.</p></div>
+          <div class="garden-bed" role="group" aria-label="Flores com mensagens">
+            <button type="button" class="garden-flower flower-pink" data-garden="Você deixa os meus dias mais coloridos sem nem perceber."><span>✿</span><small>leveza</small></button>
+            <button type="button" class="garden-flower flower-yellow" data-garden="O seu jeitinho é uma das coisas mais lindas que eu já tive a sorte de conhecer."><span>✿</span><small>jeitinho</small></button>
+            <button type="button" class="garden-flower flower-lilac" data-garden="Eu gosto de nós até nas pequenas coisas: nas piadas, nas calls e nos silêncios."><span>✿</span><small>nós</small></button>
+            <button type="button" class="garden-flower flower-red" data-garden="Se eu pudesse escolher uma flor para guardar, ela teria o seu nome."><span>♥</span><small>maria</small></button>
+          </div>
+          <p class="garden-reveal" id="garden-reveal" aria-live="polite">Uma flor está esperando você.</p>
+        </section>
+        <section class="heart-game" aria-labelledby="heart-game-title">
+          <div class="heart-game-intro"><span class="eyebrow">missão: pegar carinho</span><h3 id="heart-game-title">Colecione<br /><em>nossos corações.</em></h3><p>Clique nos corações antes que eles sumam. Dez deles guardam uma surpresa.</p><button class="game-start" id="heart-game-start" type="button">Começar o jogo <span>♡</span></button></div>
+          <div class="heart-playground" id="heart-playground" aria-label="Área do jogo" aria-live="polite">
+            <span class="game-placeholder">pronta para brincar?</span>
+            <span class="heart-score" id="heart-score">0 / 10</span>
+          </div>
+          <p class="heart-game-message" id="heart-game-message" aria-live="polite">Cada coração é só uma desculpa para te mandar mais carinho.</p>
         </section>
         <section class="chapter-list" aria-label="Capítulos">
           <div class="section-heading"><span>Nossas lembranças</span><small>sete pedacinhos de nós</small></div>

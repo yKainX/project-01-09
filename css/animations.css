@@ -122,3 +122,40 @@ body::after { background-image:radial-gradient(rgba(181,112,145,.32) .55px,trans
 .illustration-moment p { color:#e6d4df; font-size:.86rem; line-height:1.55; margin:0; }
 @media (min-width:620px) { .illustration-moment { grid-template-columns:.9fr 1.1fr; padding:26px; } .illustration-moment img { height:230px; } }
 @keyframes sticker-float { 0%,100% { transform:translateY(0) rotate(-1deg); } 50% { transform:translateY(-9px) rotate(1deg); } }
+
+/* Jardinzinho, cartas e jogo escondidos pela página */
+.animated-letters .sealed-letter { align-items:stretch; background:linear-gradient(145deg,#fffefa,#f8e4ed); display:grid; min-height:170px; overflow:hidden; padding:0; position:relative; text-align:center; }
+.animated-letters .sealed-letter::before { border-left:1px solid rgba(212,130,162,.32); border-top:1px solid rgba(212,130,162,.32); content:""; height:115px; left:18%; position:absolute; top:35px; transform:rotate(45deg); width:115px; }
+.animated-letters .sealed-letter::after { background:linear-gradient(135deg,transparent 49%,rgba(213,135,167,.25) 50%,transparent 51%); content:""; inset:0; pointer-events:none; position:absolute; }
+.letter-flap { align-items:center; background:linear-gradient(135deg,#e48baa,#a88ae0)!important; border-radius:50%!important; display:flex!important; font-family:var(--serif)!important; font-size:1rem!important; height:43px!important; justify-content:center; left:50%; min-width:43px!important; position:absolute; top:37px; transform:translateX(-50%); transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .35s; z-index:2; }
+.letter-label { align-self:end; color:#694557; font:italic 1rem var(--serif); line-height:1.2; padding:0 15px 32px; position:relative; z-index:1; }
+.animated-letters i { bottom:12px; color:#bd7693; font:600 .58rem var(--sans); font-style:normal; left:0; letter-spacing:.13em; position:absolute; right:0; text-transform:uppercase; z-index:1; }
+.animated-letters .sealed-letter.opened { animation:letter-open .6s ease both; background:#fff; }
+.animated-letters .sealed-letter.opened .letter-flap { opacity:0; transform:translateX(-50%) translateY(-58px) rotate(20deg); }
+.love-garden { background:linear-gradient(145deg,#f7ffef,#fff4f7 62%,#f2edff); border:1px solid rgba(188,210,159,.35); border-radius:31px; margin:50px 0; overflow:hidden; padding:29px 21px 23px; position:relative; }
+.love-garden::after { background:radial-gradient(circle,rgba(255,211,230,.72),transparent 67%); content:""; height:220px; position:absolute; right:-70px; top:-105px; width:220px; }
+.garden-copy { max-width:360px; position:relative; z-index:1; }
+.garden-copy h3,.heart-game h3 { color:#3e4037; font-size:clamp(2rem,8vw,3.1rem); letter-spacing:-.075em; line-height:.93; margin:9px 0 13px; }
+.garden-copy h3 em { background:none; color:#bd6f93; }
+.garden-copy p { color:#68705f; font-size:.88rem; line-height:1.55; margin:0; }
+.garden-bed { align-items:end; display:grid; grid-template-columns:repeat(4,1fr); margin:25px auto 13px; max-width:480px; min-height:150px; position:relative; z-index:1; }
+.garden-bed::before { background:linear-gradient(90deg,#a8c98b,#d8eac8,#a8c98b); border-radius:99px; bottom:25px; content:""; height:3px; left:3%; position:absolute; right:3%; }
+.garden-flower { background:transparent; border:0; color:#e68caf; cursor:pointer; display:grid; gap:4px; justify-items:center; padding:5px 2px 29px; position:relative; transition:transform .25s; z-index:1; }
+.garden-flower::after { background:#72ad77; bottom:18px; content:""; height:41px; position:absolute; width:4px; z-index:-1; }
+.garden-flower span { filter:drop-shadow(0 7px 8px rgba(180,92,128,.2)); font-size:clamp(2.6rem,10vw,4rem); line-height:.8; transition:transform .38s cubic-bezier(.2,.8,.2,1); }
+.garden-flower small { color:#60715a; font-size:.58rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.flower-yellow { color:#edb94e; }.flower-lilac { color:#ae91df; }.flower-red { color:#d86d8f; }
+.garden-flower:hover,.garden-flower.bloomed { transform:translateY(-8px); }.garden-flower:hover span,.garden-flower.bloomed span { animation:flower-bloom .55s ease both; }
+.garden-reveal { background:rgba(255,255,255,.62); border-radius:15px; color:#617057; font:italic 1rem/1.5 var(--serif); margin:9px 0 0; min-height:3.1em; padding:12px 14px; position:relative; z-index:1; }
+.heart-game { background:#292036; border-radius:31px; box-shadow:0 20px 46px rgba(57,35,67,.18); color:#fff; margin:45px 0 52px; overflow:hidden; padding:29px 21px 21px; position:relative; }
+.heart-game::before { background:radial-gradient(circle,rgba(255,130,181,.36),transparent 68%); content:""; height:280px; position:absolute; right:-115px; top:-125px; width:280px; }
+.heart-game-intro { max-width:380px; position:relative; z-index:1; }.heart-game .eyebrow { color:#f7afce; }.heart-game h3 { color:#fffafd; margin-bottom:12px; }.heart-game h3 em { background:none; color:#ffcda1; }.heart-game-intro p { color:#decfe2; font-size:.88rem; line-height:1.55; margin:0; }
+.game-start { background:linear-gradient(110deg,#ed82ae,#ac8ce0); border:0; border-radius:999px; color:#fff; cursor:pointer; font:700 .78rem var(--sans); margin:18px 0 20px; padding:12px 16px; position:relative; transition:transform .2s,box-shadow .2s; z-index:1; }.game-start:hover { box-shadow:0 9px 19px rgba(239,117,171,.35); transform:translateY(-2px); }.game-start span { font-size:1.1rem; margin-left:6px; }
+.heart-playground { background:linear-gradient(140deg,rgba(255,255,255,.14),rgba(255,218,237,.07)); border:1px solid rgba(255,255,255,.2); border-radius:22px; height:220px; overflow:hidden; position:relative; }.heart-playground::before { background-image:radial-gradient(rgba(255,255,255,.55) 1px,transparent 1.5px); background-size:25px 25px; content:""; inset:0; opacity:.36; position:absolute; }
+.game-placeholder { color:#eadbea; font:italic 1.1rem var(--serif); left:50%; position:absolute; top:50%; transform:translate(-50%,-50%); white-space:nowrap; }.heart-score { background:rgba(30,22,41,.5); border-radius:99px; color:#fff; font-size:.68rem; font-weight:700; letter-spacing:.09em; padding:8px 10px; position:absolute; right:13px; top:13px; }
+.catch-heart { animation:heart-pop .35s ease both,heart-drift 1.65s ease-in-out forwards; background:transparent; border:0; color:#ff8dbb; cursor:pointer; filter:drop-shadow(0 5px 8px rgba(255,103,160,.42)); font-size:3rem; line-height:1; padding:4px; position:absolute; transition:transform .15s; }.catch-heart:hover { transform:scale(1.2); }.heart-playground.game-won { background:linear-gradient(135deg,rgba(255,150,194,.34),rgba(198,170,255,.29)); }.heart-game-message { color:#ebdce6; font:italic 1rem/1.55 var(--serif); margin:15px 2px 0; min-height:3em; position:relative; }
+@keyframes letter-open { 0% { transform:rotateX(0); } 45% { transform:rotateX(7deg) translateY(-5px); } 100% { transform:none; } }
+@keyframes flower-bloom { 0% { transform:scale(.65) rotate(-12deg); } 65% { transform:scale(1.22) rotate(7deg); } 100% { transform:scale(1); } }
+@keyframes heart-pop { from { opacity:0; transform:scale(.2); } to { opacity:1; transform:scale(1); } }
+@keyframes heart-drift { 0%,100% { margin-top:0; } 50% { margin-top:-11px; } }
+@media (min-width:680px) { .love-garden,.heart-game { padding:38px; }.heart-game { display:grid; gap:10px 38px; grid-template-columns:.85fr 1.15fr; }.heart-game-intro { grid-row:span 2; }.game-start { margin-bottom:0; }.heart-playground { align-self:end; height:245px; }.heart-game-message { align-self:start; margin:0; }.animated-letters .sealed-letter { min-height:195px; } }

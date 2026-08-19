@@ -31,4 +31,58 @@ export function bindLoveInteractions() {
       letterReveal.classList.add('is-revealed');
     });
   });
+
+  const gardenReveal = document.querySelector('#garden-reveal');
+  document.querySelectorAll('.garden-flower').forEach((flower) => {
+    flower.addEventListener('click', () => {
+      document.querySelectorAll('.garden-flower').forEach((item) => item.classList.toggle('bloomed', item === flower));
+      gardenReveal.textContent = flower.dataset.garden;
+      gardenReveal.classList.add('is-revealed');
+    });
+  });
+
+  const startGame = document.querySelector('#heart-game-start');
+  const playground = document.querySelector('#heart-playground');
+  const score = document.querySelector('#heart-score');
+  const gameMessage = document.querySelector('#heart-game-message');
+  let heartsCaught = 0;
+  let heartTimer;
+
+  function spawnHeart() {
+    if (heartsCaught >= 10) return;
+    playground.querySelector('.game-placeholder')?.remove();
+    playground.querySelector('.catch-heart')?.remove();
+    const heart = document.createElement('button');
+    heart.type = 'button';
+    heart.className = 'catch-heart';
+    heart.textContent = ['♥', '♡', '♥'][Math.floor(Math.random() * 3)];
+    heart.setAttribute('aria-label', 'Pegar coração');
+    heart.style.left = `${10 + Math.random() * 72}%`;
+    heart.style.top = `${12 + Math.random() * 63}%`;
+    heart.addEventListener('click', () => {
+      window.clearTimeout(heartTimer);
+      heart.remove();
+      heartsCaught += 1;
+      score.textContent = `${heartsCaught} / 10`;
+      if (heartsCaught === 10) {
+        playground.classList.add('game-won');
+        gameMessage.textContent = 'Você pegou todos. A surpresa é que eu escolheria você em todos os jogos, todos os dias. ♡';
+        startGame.textContent = 'Jogar de novo ♡';
+        return;
+      }
+      spawnHeart();
+    });
+    playground.append(heart);
+    heartTimer = window.setTimeout(spawnHeart, 1700);
+  }
+
+  startGame?.addEventListener('click', () => {
+    window.clearTimeout(heartTimer);
+    heartsCaught = 0;
+    score.textContent = '0 / 10';
+    playground.classList.remove('game-won');
+    gameMessage.textContent = 'Vai, pega todos antes que eles fujam.';
+    startGame.textContent = 'Recomeçar <3';
+    spawnHeart();
+  });
 }
