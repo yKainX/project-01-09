@@ -12,7 +12,14 @@ import { mountQualityGame } from './game.js';
 
 const ACCESS_CODE = '0105';
 const ACCESS_KEY = 'maria-access-granted';
+const JOURNEY_VERSION_KEY = 'maria-story-flow-18';
 const state = loadState();
+if (localStorage.getItem(JOURNEY_VERSION_KEY) !== 'ready') {
+  state.completed = [];
+  state.lastChapterViewed = null;
+  saveState(state);
+  localStorage.setItem(JOURNEY_VERSION_KEY, 'ready');
+}
 const chapterContainer = document.querySelector('#chapters');
 const app = document.querySelector('#app');
 const accessScreen = document.querySelector('#access-screen');
@@ -36,9 +43,8 @@ function renderChapters() {
 }
 
 function resolveContinueIndex() {
-  const preferred = Number.isInteger(state.lastChapterViewed) ? state.lastChapterViewed : state.completed.length;
   const highestUnlocked = Math.max(0, unlockedCount(state, chapters.length) - 1);
-  return Math.min(Math.max(preferred, 0), highestUnlocked);
+  return Math.min(state.completed.length, highestUnlocked);
 }
 
 function openChapter(index, writeHistory = true) {
