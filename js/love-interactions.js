@@ -1,7 +1,7 @@
 const moments = {
-  care: 'Um lembrete: você merece cuidado, paciência e alguém que queira ficar por perto. Eu gosto de estar aqui para você.',
-  smile: 'Seu sorriso é uma das minhas coisas favoritas. E o mais bonito é que ele quase sempre aparece quando você simplesmente está sendo você.',
-  remember: 'Eu lembro de uma partida às 03:32, de você puxando assunto com todo mundo e de mim sem imaginar o quanto você ainda ia significar para mim.'
+  care: 'A conversa. Você puxou assunto com o squad inteiro e até uma partida virou papo sobre Caim, Abel e a Bíblia. Foi ali que eu comecei a reparar em você.',
+  smile: 'O convite. Depois daquela madrugada, você me adicionou e continuou me chamando para jogar. Cada convite parecia simples, mas me deixava feliz de um jeito novo.',
+  remember: 'O acaso. Eu entrei em uma partida qualquer às 03:32 e encontrei você. Quatro meses depois, ainda acho bonito pensar que foi assim que nós começamos.'
 };
 
 export function bindLoveInteractions(root = document) {
@@ -64,6 +64,15 @@ export function bindLoveInteractions(root = document) {
       root.querySelectorAll('.garden-flower').forEach((item) => item.classList.toggle('bloomed', item === flower));
       gardenReveal.textContent = flower.dataset.garden;
       gardenReveal.classList.add('is-revealed');
+    });
+  });
+
+  const collectionReveal = root.querySelector('#collection-reveal');
+  root.querySelectorAll('.collection-token').forEach((token) => {
+    token.addEventListener('click', () => {
+      root.querySelectorAll('.collection-token').forEach((item) => item.classList.toggle('selected', item === token));
+      collectionReveal.textContent = token.dataset.collection;
+      collectionReveal.classList.add('is-revealed');
     });
   });
 
