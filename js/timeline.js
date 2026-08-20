@@ -31,6 +31,21 @@ function renderMediaSection() {
   return `<section class="illustration-moment" aria-label="Um retrato ilustrado de vocês"><img src="assets/illustrations/couple-bouquet-sticker-personal.png" alt="Ilustração de vocês dois trocando flores" /><div><span class="eyebrow">um retrato do que eu sinto</span><h3>Você faz meu coração<br />ficar em casa.</h3><p>Não precisa de foto perfeita quando o que eu sinto por você aparece em cada detalhe.</p></div></section>`;
 }
 
+const chapterStickers = {
+  portrait: ['assets/stickers/chapter-01-gaming.png', 'Nós dois na primeira partida que mudou tudo'],
+  timeline: ['assets/stickers/chapter-02-calls.png', 'Nós dois em uma call na madrugada'],
+  details: ['assets/stickers/chapter-03-details.png', 'Nós dois com ursinho e os bichos que lembram Maria'],
+  nights: ['assets/stickers/chapter-04-nights.png', 'Nós dois jogando juntos nas nossas noites'],
+  music: ['assets/stickers/chapter-05-music.png', 'Nós dois ouvindo música juntos'],
+  future: ['assets/stickers/chapter-06-sky.png', 'Nós dois olhando o céu cheio de estrelas'],
+  letter: ['assets/stickers/chapter-07-flowers.png', 'Nós dois com um buquê de flores']
+};
+
+function renderChapterSticker(type) {
+  const [source, alt] = chapterStickers[type] || [];
+  return source ? `<figure class="chapter-sticker"><img src="${source}" alt="${alt}" /></figure>` : '';
+}
+
 export function activityFor(chapterIndex) {
   const activities = [
     `<section class="moment-selector chapter-activity" aria-labelledby="moment-title"><div><span class="eyebrow">na primeira madrugada</span><h3 id="moment-title">O que fez uma<br /><em>partida ficar?</em></h3></div><div class="moment-options"><button type="button" data-moment="care">A conversa</button><button type="button" data-moment="smile">O convite</button><button type="button" data-moment="remember">O acaso</button></div><p class="moment-answer" id="moment-answer" aria-live="polite">Escolhe uma pista para revisitar o início de nós.</p></section>`,
@@ -47,12 +62,12 @@ export function activityFor(chapterIndex) {
 function renderCards(chapter) {
   const cards = chapter.cards.map(([title, text], index) => `<article class="memory-card memory-slide ${chapter.type === 'music' ? 'song-card' : ''}"><span class="memory-date">fragmento ${String(index + 1).padStart(2, '0')}</span><h4>${title}</h4><p class="${index === 1 && chapter.type === 'portrait' ? 'quote' : ''}">${text}</p>${chapter.type === 'audio' ? `<div class="audio-player" data-id="audio-${index}"><button class="play-button" aria-label="Reproduzir áudio">▶</button><div class="audio-info"><strong>Mensagem ${index + 1}</strong><div class="mini-progress"><span></span></div></div><span class="audio-time">0:18</span></div>` : ''}</article>`).join('');
   const carousel = `<section class="memory-carousel" aria-label="Fragmentos desta lembrança"><div class="carousel-rail">${cards}</div><div class="carousel-controls"><button type="button" data-carousel="previous" aria-label="Fragmento anterior">←</button><span class="carousel-count" aria-live="polite"></span><button type="button" data-carousel="next" aria-label="Próximo fragmento">→</button></div></section>`;
-  return `${chapter.type === 'details' ? renderMediaSection() : ''}${carousel}`;
+  return `${renderChapterSticker(chapter.type)}${carousel}`;
 }
 
 export function contentFor(chapter) {
   if (chapter.type === 'gallery') return renderGallery();
-  if (chapter.type === 'music') return renderMusic();
-  if (chapter.type === 'letter') return `<article class="letter"><p>Maria, quatro meses atrás eu entrei em uma partida sem imaginar que aquela madrugada às 03:32 ia trazer você para a minha vida. Você puxando assunto, eu mais quieto e uma conversa completamente aleatória. Foi assim que tudo começou, e eu acho bonito demais pensar nisso.</p><p>Depois vieram os jogos, os convites, as calls e a vontade de repetir tudo no dia seguinte. Aos poucos, você deixou de ser uma pessoa com quem eu jogava e virou alguém que eu queria ter por perto em qualquer momento.</p><p>Eu penso em você no trabalho, espero a hora de ligar o computador e gosto de cada conversa que a gente consegue ter. Não é sobre o jogo. É sobre você, sobre ouvir sua voz, ver suas reações e sentir que, mesmo de longe, a gente encontra um jeito de ficar junto.</p><p>Eu amo seu jeito de ser, suas frases, sua risada, sua intensidade e até as coisas que você faz sem perceber. Você é única para mim, Maria.</p><p>Eu te amo muito. Quero continuar vivendo mais histórias, mais noites e mais versões de nós. Quero cuidar do que estamos construindo e escolher você em cada passo que vier.</p><p class="final-line">Obrigado por ter me chamado para jogar naquele dia. Ainda bem que foi você. Ainda bem que somos nós.</p></article>`;
+  if (chapter.type === 'music') return `${renderChapterSticker(chapter.type)}${renderMusic()}`;
+  if (chapter.type === 'letter') return `${renderChapterSticker(chapter.type)}<article class="letter"><p>Maria, quatro meses atrás eu entrei em uma partida sem imaginar que aquela madrugada às 03:32 ia trazer você para a minha vida. Você puxando assunto, eu mais quieto e uma conversa completamente aleatória. Foi assim que tudo começou, e eu acho bonito demais pensar nisso.</p><p>Depois vieram os jogos, os convites, as calls e a vontade de repetir tudo no dia seguinte. Aos poucos, você deixou de ser uma pessoa com quem eu jogava e virou alguém que eu queria ter por perto em qualquer momento.</p><p>Eu penso em você no trabalho, espero a hora de ligar o computador e gosto de cada conversa que a gente consegue ter. Não é sobre o jogo. É sobre você, sobre ouvir sua voz, ver suas reações e sentir que, mesmo de longe, a gente encontra um jeito de ficar junto.</p><p>Eu amo seu jeito de ser, suas frases, sua risada, sua intensidade e até as coisas que você faz sem perceber. Você é única para mim, Maria.</p><p>Eu te amo muito. Quero continuar vivendo mais histórias, mais noites e mais versões de nós. Quero cuidar do que estamos construindo e escolher você em cada passo que vier.</p><p class="final-line">Obrigado por ter me chamado para jogar naquele dia. Ainda bem que foi você. Ainda bem que somos nós.</p></article>`;
   return renderCards(chapter);
 }
