@@ -43,7 +43,7 @@ const chapterStickers = {
 
 function renderChapterSticker(type) {
   const [source, alt] = chapterStickers[type] || [];
-  return source ? `<figure class="chapter-sticker"><img src="${source}" alt="${alt}" /></figure>` : '';
+  return source ? `<figure class="chapter-sticker"><img src="${source}?v=transparent-28" alt="${alt}" /></figure>` : '';
 }
 
 export function activityFor(chapterIndex) {

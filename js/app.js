@@ -7,7 +7,7 @@ import { bindGallery } from './gallery.js';
 import { bindMusicPlayers } from './music.js';
 import { bindMemoryCarousels } from './memory-carousel.js';
 import { bindLoveInteractions } from './love-interactions.js';
-import { activityFor, chapters, contentFor } from './timeline.js?v=stickers-27';
+import { activityFor, chapters, contentFor } from './timeline.js?v=transparent-28';
 import { mountQualityGame } from './game.js';
 
 const ACCESS_CODE = '0105';
